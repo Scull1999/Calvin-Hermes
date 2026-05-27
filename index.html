@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkyVault Hosting — Fast, Secure, Reliable</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --border: #1e1e2e;
+    --accent: #6c5ce7;
+    --accent-glow: #a29bfe;
+    --text: #e0e0e8;
+    --muted: #8888a0;
+    --green: #00d2a0;
+    --radius: 12px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--border);
+  }
+  .logo { font-size: 1.5rem; font-weight: 700; color: #fff; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.95rem; transition: color .2s; }
+  .nav-links a:hover { color: #fff; }
+  .btn {
+    display: inline-block; padding: 12px 28px; border-radius: var(--radius);
+    font-weight: 600; font-size: 0.95rem; text-decoration: none; cursor: pointer;
+    transition: all .2s; border: none;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: #7c6ff7; box-shadow: 0 0 24px rgba(108,92,231,.4); }
+  .btn-outline { background: transparent; color: #fff; border: 1px solid var(--border); }
+  .btn-outline:hover { border-color: var(--accent); }
+
+  /* Hero */
+  .hero { text-align: center; padding: 100px 0 80px; }
+  .hero h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
+  .hero h1 span { background: linear-gradient(135deg, var(--accent), var(--accent-glow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero p { font-size: 1.2rem; color: var(--muted); max-width: 600px; margin: 0 auto 36px; }
+  .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  /* Stats */
+  .stats { display: flex; justify-content: center; gap: 64px; padding: 60px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .stat { text-align: center; }
+  .stat-num { font-size: 2rem; font-weight: 700; color: #fff; }
+  .stat-label { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+
+  /* Features */
+  .section-title { text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 12px; }
+  .section-sub { text-align: center; color: var(--muted); margin-bottom: 56px; }
+  .features { padding: 80px 0; }
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .feature-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 32px; transition: border-color .2s;
+  }
+  .feature-card:hover { border-color: var(--accent); }
+  .feature-icon { font-size: 2rem; margin-bottom: 16px; }
+  .feature-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .feature-card p { color: var(--muted); font-size: 0.92rem; }
+
+  /* Pricing */
+  .pricing { padding: 80px 0; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .plan {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 40px 32px; text-align: center;
+    transition: border-color .2s;
+  }
+  .plan.featured { border-color: var(--accent); position: relative; }
+  .plan.featured::before {
+    content: 'MOST POPULAR'; position: absolute; top: -12px; left: 50%;
+    transform: translateX(-50%); background: var(--accent); color: #fff;
+    font-size: 0.72rem; font-weight: 700; padding: 4px 14px; border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+  .plan-name { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+  .plan-price { font-size: 2.8rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
+  .plan-price small { font-size: 1rem; color: var(--muted); font-weight: 400; }
+  .plan-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 24px; }
+  .plan-features { list-style: none; text-align: left; margin-bottom: 28px; }
+  .plan-features li { padding: 8px 0; font-size: 0.92rem; color: var(--muted); }
+  .plan-features li::before { content: '✓ '; color: var(--green); font-weight: 700; }
+
+  /* CTA */
+  .cta {
+    text-align: center; padding: 80px 0;
+    background: linear-gradient(135deg, rgba(108,92,231,.1), rgba(162,155,254,.05));
+    border-radius: var(--radius); margin-bottom: 60px;
+  }
+  .cta h2 { font-size: 2rem; margin-bottom: 12px; }
+  .cta p { color: var(--muted); margin-bottom: 28px; }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--border); padding: 40px 0; text-align: center; color: var(--muted); font-size: 0.88rem; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .features-grid, .pricing-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.2rem; }
+    .stats { gap: 32px; flex-wrap: wrap; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <nav>
+    <div class="logo">Sky<span>Vault</span></div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#support">Support</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#pricing" class="btn btn-outline">Get Started</a>
+  </nav>
+
+  <section class="hero">
+    <h1>Hosting that <span>doesn't keep you up</span> at night</h1>
+    <p>Blazing-fast servers, 99.99% uptime, and support that actually answers. From static sites to enterprise clusters — we've got you.</p>
+    <div class="hero-cta">
+      <a href="#pricing" class="btn btn-primary">View Plans</a>
+      <a href="#features" class="btn btn-outline">Learn More</a>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">99.99%</div>
+      <div class="stat-label">Uptime SLA</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">12,000+</div>
+      <div class="stat-label">Active Customers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">28</div>
+      <div class="stat-label">Global Data Centers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">&lt;14ms</div>
+      <div class="stat-label">Avg Response Time</div>
+    </div>
+  </div>
+
+  <section class="features" id="features">
+    <h2 class="section-title">Everything you need to ship fast</h2>
+    <p class="section-sub">No upsells, no fine print. Just the tools your projects deserve.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>NVMe SSD Storage</h3>
+        <p>Lightning-fast reads and writes on every plan. Your visitors won't wait — and neither will your database.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Free SSL & DDoS Shield</h3>
+        <p>Auto-renewing Let's Encrypt certificates and layer-7 DDoS protection included on every domain.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <h3>Global CDN</h3>
+        <p>28 edge locations serving your static assets from the node closest to each visitor. Zero config.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🐳</div>
+        <h3>One-Click Deploys</h3>
+        <p>Push to Git, we handle the rest. Native support for Node, Python, PHP, Go, and Docker containers.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Real-Time Analytics</h3>
+        <p>Traffic, bandwidth, CPU, and error rates — all on a live dashboard. Know before your users do.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h3>24/7 Human Support</h3>
+        <p>Average first response under 8 minutes. No chatbots, no ticket limbo. Real engineers on chat and phone.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <h2 class="section-title">Plans that scale with you</h2>
+    <p class="section-sub">30-day money-back guarantee. No questions asked.</p>
+    <div class="pricing-grid">
+      <div class="plan">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">$5<small>/mo</small></div>
+        <div class="plan-desc">Perfect for personal projects and blogs.</div>
+        <ul class="plan-features">
+          <li>1 Website</li>
+          <li>10 GB NVMe SSD</li>
+          <li>Unmetered Bandwidth</li>
+          <li>Free SSL Certificate</li>
+          <li>Email Support</li>
+        </ul>
+        <a href="#" class="btn btn-outline" style="width:100%">Get Started</a>
+      </div>
+      <div class="plan featured">
+        <div class="plan-name">Professional</div>
+        <div class="plan-price">$15<small>/mo</small></div>
+        <div class="plan-desc">For growing businesses and freelancers.</div>
+        <ul class="plan-features">
+          <li>Unlimited Websites</li>
+          <li>50 GB NVMe SSD</li>
+          <li>Unmetered Bandwidth</li>
+          <li>Free SSL + DDoS Shield</li>
+          <li>Global CDN Included</li>
+          <li>Priority Chat Support</li>
+        </ul>
+        <a href="#" class="btn btn-primary" style="width:100%">Get Started</a>
+      </div>
+      <div class="plan">
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-price">$49<small>/mo</small></div>
+        <div class="plan-desc">Dedicated resources for high-traffic apps.</div>
+        <ul class="plan-features">
+          <li>Unlimited Websites</li>
+          <li>200 GB NVMe SSD</li>
+          <li>Unmetered Bandwidth</li>
+          <li>Dedicated IP Address</li>
+          <li>Advanced DDoS Protection</li>
+          <li>Phone + Chat 24/7</li>
+          <li>99.99% Uptime SLA</li>
+        </ul>
+        <a href="#" class="btn btn-outline" style="width:100%">Contact Sales</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Ready to launch?</h2>
+    <p>Spin up a server in under 60 seconds. No credit card required for the trial.</p>
+    <a href="#" class="btn btn-primary">Start Free Trial</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 SkyVault Hosting, Inc. All rights reserved.</p>
+  </footer>
+</div>
+
+</body>
+</html>
